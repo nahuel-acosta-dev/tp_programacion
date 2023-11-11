@@ -9,12 +9,12 @@ Para comenzar a trabajar con este proyecto, sigue estos pasos:
     ```En la terminal escribe y dale enter:
     git clone https://github.com/nahuel-acosta-dev/tp_programacion.git
     ```
-2. Entra a la carpeta que se creo y abri tu editor de codigo en ese lugar donde estan los archivos del proyecto o usa cd tp_programacion.
+2. Entra a la carpeta que se creo(tp_programacion) y abri tu editor de codigo en ese lugar donde estan los archivos del proyecto o usa cd tp_programacion.
 
 
 ### Instalar Dependencias
 
-Asegúrate de tener Python y pip instalados (pip install). Luego, ejecuta el siguiente comando en la terminal para instalar las dependencias necesarias(pygame):
+Asegúrate de tener Python y pip instalados (pip install). Luego, dentro de la carpeta del proyecto(tp_programacion) ejecuta el siguiente comando en la terminal para instalar las dependencias necesarias(pygame):
 ```En la terminal escribe y dale enter:
 pip install -r requirements.txt
 ```
