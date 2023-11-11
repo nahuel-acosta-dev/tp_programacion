@@ -7,7 +7,7 @@ Para comenzar a trabajar con este proyecto, sigue estos pasos:
 1. Abre tu terminal y ejecuta el siguiente comando para clonar el repositorio:
 
     ```En la terminal escribe y dale enter:
-    git clone <repositorio-link>
+    git clone https://github.com/nahuel-acosta-dev/tp_programacion.git
     ```
 
 ### Instalar Dependencias
