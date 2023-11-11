@@ -21,16 +21,21 @@ pip install -r requirements.txt
 
 ### Como usar Git
 
-1-En la terminal escribe los siguientes comandos para cargar tus cambios al repositorio para que tus compañeros puedan verlos:
-```Antes de comenzar a trabajar en tu código, es una buena práctica obtener los cambios más recientes de tus compañeros. Utiliza el siguiente comando:
+En la terminal escribe los siguientes comandos para cargar tus cambios al repositorio para que tus compañeros puedan verlos:
+
+1-Antes de comenzar a trabajar en tu código, es una buena práctica obtener los cambios más recientes de tus compañeros. Utiliza el siguiente comando
+```
 git pull
 ```
-```Una vez que hayas realizado cambios en tu código y estés listo para compartirlos, sigue estos pasos:
+2-Una vez que hayas realizado cambios en tu código y estés listo para compartirlos, sigue estos pasos
+```
 git add .
 ```
-```Agrega un breve mensaje descriptivo que explique los cambios que realizaste o simplemente un .:
+3-Agrega un breve mensaje descriptivo que explique los cambios que realizaste o simplemente un .
+```
 git commit -m "Tu breve mensaje descriptivo aquí o ."
 ```
-```Este comando enviará tus cambios al repositorio para que tus compañeros puedan verlos y descargarlos en su proyecto:
+4-Este comando enviará tus cambios al repositorio para que tus compañeros puedan verlos y descargarlos en su proyecto
+```
 git push
 ```
