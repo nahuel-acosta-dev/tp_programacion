@@ -30,10 +30,22 @@ def lectura():
 # De la lista de productos elige uno al azar y devuelve una lista de 3 elementos, el primero el nombre del producto , el segundo si es economico
 # o premium y el tercero el precio.
 def buscar_producto(lista_productos):
-    # en que se basa para saber si el precio es premium o economico?donde es la comparativa?
-    producto = ["Silla de oficina", "(premium)", 4391]
-    producto_random = random.choice(lista_productos)
-    return producto
+    # producto = ["Silla de oficina", "(premium)", 4391]
+    # producto_aleatorio = lista_productos
+
+    # se le da el array que devuelve la funcion lectura() y te da un array al azar economico o premium
+
+    producto_aleatorio = random.choice(lista_productos)
+
+    numero_aleatorio = random.randint(1, 2)
+
+    if numero_aleatorio == 1:
+        valor = producto_aleatorio[1]
+        producto_aleatorio[1] = "(economico)"
+        producto_aleatorio[2] = valor
+    else:
+        producto_aleatorio[1] = "(premium)"
+    return producto_aleatorio
 
 # Elige el producto. Debe tener al menos dos productos con un valor similar
 
