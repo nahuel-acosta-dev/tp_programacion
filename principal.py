@@ -13,6 +13,8 @@ from extras import *
 
 
 def main():
+
+    pygame.mixer.init()
     # Centrar la ventana y despues inicializar pygame
     os.environ["SDL_VIDEO_CENTERED"] = "1"
     pygame.init()
@@ -31,7 +33,7 @@ def main():
     puntos = 0  # puntos o dinero acumulado por el jugador
     producto_candidato = ""
 
-    #Lee el archivo y devuelve una lista con los productos,
+    # Lee el archivo y devuelve una lista con los productos,
     lista_productos = lectura()  # lista de productos
 
     # Elegir un producto, [producto, calidad, precio]
@@ -40,12 +42,15 @@ def main():
     # Elegimos productos aleatorios, garantizando que al menos 2 mas tengan el mismo precio.
     # De manera aleatoria se debera tomar el valor economico o el valor premium.
     # Agregar  '(economico)' o '(premium)' y el precio
-    productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
+    productos_en_pantalla = dameProductosAleatorios(
+        producto, lista_productos, MARGEN)
     print(productos_en_pantalla)
 
     # dibuja la pantalla la primera vez
     dibujar(screen, productos_en_pantalla, producto,
             producto_candidato, puntos, segundos)
+
+    # cargar_musica() #Prender musica de juego
 
     while segundos > fps/1000:
         # 1 frame cada 1/fps segundos
@@ -69,20 +74,24 @@ def main():
                 producto_candidato += letra  # va concatenando las letras que escribe
                 if e.key == K_BACKSPACE:
                     # borra la ultima
-                    producto_candidato = producto_candidato[0:len(producto_candidato)-1]
+                    producto_candidato = producto_candidato[0:len(
+                        producto_candidato)-1]
                 if e.key == K_RETURN:  # presionó enter
                     indice = int(producto_candidato)
                     # chequeamos si el prducto no es el producto principal. Si no lo es procesamos el producto
                     if indice < len(productos_en_pantalla):
-                        puntos += procesar(producto, productos_en_pantalla[indice], MARGEN)
+                        puntos += procesar(producto,
+                                           productos_en_pantalla[indice], MARGEN)
                         producto_candidato = ""
                         # Elegir un producto
                         producto = dameProducto(lista_productos, MARGEN)
                         # elegimos productos aleatorios, garantizando que al menos 2 mas tengan el mismo precio
-                        productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
+                        productos_en_pantalla = dameProductosAleatorios(
+                            producto, lista_productos, MARGEN)
                     else:
                         producto_candidato = ""
-
+            # cargamos los sonidos
+            cargar_sonidos(e)
 
         segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
 
