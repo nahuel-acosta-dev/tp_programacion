@@ -6,6 +6,7 @@ from extras import *
 
 # lee el archivo y carga en la lista lista_producto todas las palabras
 
+# comentario de prueba
 
 def lectura():
     with open('productos.txt', 'r') as file:
