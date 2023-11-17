@@ -9,38 +9,23 @@ from extras import *
 # comentario de prueba
 
 def lectura():
-    #with open('productos.txt', 'r') as file:
-    #    lines = file.readlines()
+    with open('productos.txt', 'r') as file:
+        lines = file.readlines()
 
-    #array = []
+    array = []
 
-    #for line in lines:
-    #    """usamos strip para eliminar espacion al principio y al final de la cadenas. 
-    #        con split dividimos por (,), es decir cada elemento del subarray  se obtiene a partir de dividir en el momento
-    #        que encontremos la (,) en el txt"""
-    #    subarray = line.strip().split(',')
+    for line in lines:
+        """usamos strip para eliminar espacion al principio y al final de la cadenas. 
+            con split dividimos por (,), es decir cada elemento del subarray  se obtiene a partir de dividir en el momento
+            que encontremos la (,) en el txt"""
+        subarray = line.strip().split(',')
 
-    #    subarray[1] = int(subarray[1])
-    #    subarray[2] = int(subarray[2])
+        subarray[1] = int(subarray[1])
+        subarray[2] = int(subarray[2])
 
-    #    array.append(subarray)
+        array.append(subarray)
 
-    #return subarray
-
-    return [["Arroz", 1001, 1037],
-                ["Yerba mate", 4546, 4904],
-                ["Televisor Smart", 2055, 2439],
-                ["Aceite de cocina", 3674, 4783],
-                ["Mouse", 1635, 3603],
-                ["Monitor de computadora", 2782, 2870],
-                ["Silla de oficina", 3174, 4391],
-                ["Lavadora", 3720, 4197],
-                ["Refrigerador", 3352, 4533],
-                ["Smartphone", 2070, 2224],
-                ["Laptop", 4650, 4854],
-                ["Cafetera", 2358, 3646],
-                ["Batidora", 183, 4401],
-                ["Microondas", 4254, 4624]]
+    return array
 
 
 # De la lista de productos elige uno al azar y devuelve una lista de 3 elementos, el primero el nombre del producto , el segundo si es economico
