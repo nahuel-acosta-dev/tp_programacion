@@ -91,7 +91,7 @@ def main():
                     else:
                         producto_candidato = ""
             # cargamos los sonidos
-            cargar_sonidos(e)
+            #cargar_sonidos(e)
 
         segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
 

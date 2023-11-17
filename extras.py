@@ -54,8 +54,18 @@ def cargar_musica():
     pygame.mixer.music.play(-1)
 
 
-def cargar_sonidos(e):
+#def cargar_sonidos(e):
+#    sonido_clic = pygame.mixer.Sound("./sounds/moneda.mp3")
+#    sonido_clic.set_volume(0.5)
+#    if e.type == MOUSEBUTTONDOWN:
+#        sonido_clic.play()
+
+def sonido_correcto():
     sonido_clic = pygame.mixer.Sound("./sounds/moneda.mp3")
     sonido_clic.set_volume(0.5)
-    if e.type == MOUSEBUTTONDOWN:
-        sonido_clic.play()
+    sonido_clic.play()
+
+def sonido_incorrecto():
+    sonido_clic = pygame.mixer.Sound("./sounds/error.mp3")
+    sonido_clic.set_volume(1)
+    sonido_clic.play()
