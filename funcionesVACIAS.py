@@ -68,11 +68,11 @@ def buscar_producto(lista_productos, excluidos):
 
 ###############################################################################
 # Elige el producto. Debe tener al menos dos productos con un valor similar
-def dameProducto(lista_productos, margen):
-    producto = buscarProductosSimilares(lista_productos, margen)
-    return producto
+# def dameProducto(lista_productos, margen):
+#     producto = buscarProductosSimilares(lista_productos, margen)
+#     return producto
 
-def buscarProductosSimilares(lista_productos, margen):
+def dameProducto(lista_productos, margen):
     max_intentos = len(lista_productos)
     intentos = 0
     producto_probados = []
