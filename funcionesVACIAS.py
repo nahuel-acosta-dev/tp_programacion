@@ -55,6 +55,7 @@ def buscar_producto(lista_productos, excluidos):
         return None  # Si no hay productos disponibles, devolvemos None
 
     producto_aleatorio = random.choice(productos_disponibles)
+    producto_aleatorio = producto_aleatorio.copy()
 
     numero_aleatorio = random.randint(1, 2)
 
@@ -76,12 +77,15 @@ def dameProducto(lista_productos, margen):
     max_intentos = len(lista_productos)
     intentos = 0
     producto_probados = []
+    nueva_lista_productos = lista_productos
     
     while intentos < max_intentos:
-        producto_aleatorio = buscar_producto(lista_productos, producto_probados)
+        producto_aleatorio = buscar_producto(nueva_lista_productos, producto_probados)
         contadorProductosSimilares = 0
         
+        
         for producto in lista_productos:
+            
             if producto[0] != producto_aleatorio[0]:
                 if producto_aleatorio[2] >= producto[1]:
                     diferencia_1 = producto_aleatorio[2] - producto[1]

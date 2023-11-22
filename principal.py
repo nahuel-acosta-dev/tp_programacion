@@ -44,7 +44,6 @@ def main():
     # Agregar  '(economico)' o '(premium)' y el precio
     productos_en_pantalla = dameProductosAleatorios(
         producto, lista_productos, MARGEN)
-    print(productos_en_pantalla)
 
     # dibuja la pantalla la primera vez
     dibujar(screen, productos_en_pantalla, producto,
