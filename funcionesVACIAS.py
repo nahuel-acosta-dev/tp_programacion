@@ -60,10 +60,10 @@ def buscar_producto(lista_productos, excluidos):
 
     if numero_aleatorio == 1:
         valor = producto_aleatorio[1]
-        producto_aleatorio[1] = "(economico)"
+        producto_aleatorio[1] = " (Eco)"
         producto_aleatorio[2] = valor
     else:
-        producto_aleatorio[1] = "(premium)"
+        producto_aleatorio[1] = " (Pre)"
     return producto_aleatorio
 
 ###############################################################################
