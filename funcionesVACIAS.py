@@ -77,10 +77,9 @@ def dameProducto(lista_productos, margen):
     max_intentos = len(lista_productos)
     intentos = 0
     producto_probados = []
-    nueva_lista_productos = lista_productos
     
     while intentos < max_intentos:
-        producto_aleatorio = buscar_producto(nueva_lista_productos, producto_probados)
+        producto_aleatorio = buscar_producto(lista_productos, producto_probados)
         contadorProductosSimilares = 0
         
         
