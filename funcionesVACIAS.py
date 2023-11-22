@@ -10,6 +10,7 @@ from extras import *
 #### FUNCION LECTURA() ###
 ### FUNCION BUSCAR_PRODUCTO() ###
 ### FUNCION PROCESAR() ###
+### FUNCION DAME_PRODUCTO() ###
 #-------------------------------------------------------------------------#
 ################################################################
 
