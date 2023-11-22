@@ -4,6 +4,19 @@ import random
 import math
 from extras import *
 
+
+################################################################
+#-------------------FUNCIONES TERMINADAS-----------------------------------#
+#### FUNCION LECTURA() ###
+### FUNCION BUSCAR_PRODUCTO() ###
+### FUNCION PROCESAR() ###
+#-------------------------------------------------------------------------#
+################################################################
+
+################################################################
+#RECORDAR HACER git pull ANTES DE EMPEZAR A PROGRAMAR PARA ACTUALIZAR SU PROYECTO LOCAL
+###############################################################
+
 # lee el archivo y carga en la lista lista_producto todas las palabras
 
 # comentario de prueba
@@ -30,13 +43,17 @@ def lectura():
 
 # De la lista de productos elige uno al azar y devuelve una lista de 3 elementos, el primero el nombre del producto , el segundo si es economico
 # o premium y el tercero el precio.
-def buscar_producto(lista_productos):
-    # producto = ["Silla de oficina", "(premium)", 4391]
-    # producto_aleatorio = lista_productos
+def buscar_producto(lista_productos, excluidos):
+    
+    nombres_excluidos = [excluido[0] for excluido in excluidos]
+    productos_disponibles = [producto for producto in lista_productos if producto[0] not in nombres_excluidos]
 
     # se le da el array que devuelve la funcion lectura() y te da un array al azar economico o premium
+    
+    if not productos_disponibles:
+        return None  # Si no hay productos disponibles, devolvemos None
 
-    producto_aleatorio = random.choice(lista_productos)
+    producto_aleatorio = random.choice(productos_disponibles)
 
     numero_aleatorio = random.randint(1, 2)
 
@@ -48,12 +65,45 @@ def buscar_producto(lista_productos):
         producto_aleatorio[1] = "(premium)"
     return producto_aleatorio
 
+###############################################################################
 # Elige el producto. Debe tener al menos dos productos con un valor similar
-
-
 def dameProducto(lista_productos, margen):
-    producto = ["Silla de oficina", "(premium)", 4391]
+    producto = buscarProductosSimilares(lista_productos, margen)
     return producto
+
+def buscarProductosSimilares(lista_productos, margen):
+    max_intentos = len(lista_productos)
+    intentos = 0
+    producto_probados = []
+    
+    while intentos < max_intentos:
+        producto_aleatorio = buscar_producto(lista_productos, producto_probados)
+        contadorProductosSimilares = 0
+        
+        for producto in lista_productos:
+            if producto[0] != producto_aleatorio[0]:
+                if producto_aleatorio[2] >= producto[1]:
+                    diferencia_1 = producto_aleatorio[2] - producto[1]
+                else:
+                    diferencia_1 = producto[1] - producto_aleatorio[2]
+                    
+                if producto_aleatorio[2] >= producto[1]:
+                    diferencia_2 = producto_aleatorio[2] - producto[2]
+                else:
+                    diferencia_2 = producto[2] - producto_aleatorio[2] 
+    
+                if diferencia_1 <= margen and diferencia_2 <= margen:
+                    contadorProductosSimilares +=1
+                    
+                if contadorProductosSimilares >= 2:
+                    return producto_aleatorio
+        producto_probados.append(producto_aleatorio)    
+        intentos += 1  # Incrementamos el contador de intentos para evitar un bucle infinito en caso de que el txt este mal
+        
+        
+    return None
+    
+################################################################################
 
 
 # Devuelve True si existe el precio recibido como parametro aparece al menos 3 veces. Debe considerar el Margen.
@@ -66,7 +116,7 @@ def esUnPrecioValido(precio, lista_productos, margen):
 
 
 def procesar(producto_principal, producto_candidato, margen):
-    if producto_principal[2] - producto_candidato[2]<1000 and producto_principal[2] - producto_candidato[2]>-1000:
+    if producto_principal[2] - producto_candidato[2]< margen and producto_principal[2] - producto_candidato[2] >- margen:
         sonido_correcto()
         return producto_candidato[2]
     sonido_incorrecto()
