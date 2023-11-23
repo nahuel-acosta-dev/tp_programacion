@@ -12,6 +12,7 @@ from funcionesVACIAS import *
 from extras import *
 
 
+
 def main():
 
     pygame.mixer.init()
@@ -23,6 +24,7 @@ def main():
     # Preparar la ventana
     pygame.display.set_caption("Peguele al precio")
     screen = pygame.display.set_mode((ANCHO, ALTO))
+    
 
     # tiempo total del juego
     gameClock = pygame.time.Clock()
@@ -44,10 +46,13 @@ def main():
     # Agregar  '(economico)' o '(premium)' y el precio
     productos_en_pantalla = dameProductosAleatorios(
         producto, lista_productos, MARGEN)
+    
 
+    areas_clic = []
     # dibuja la pantalla la primera vez
     dibujar(screen, productos_en_pantalla, producto,
-            producto_candidato, puntos, segundos)
+            producto_candidato, puntos, segundos, areas_clic)
+    manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato)
 
     # cargar_musica() #Prender musica de juego
 
@@ -55,9 +60,10 @@ def main():
         # 1 frame cada 1/fps segundos
         gameClock.tick(fps)
         totaltime += gameClock.get_time()
+        
 
         if True:
-            fps = 3
+            fps = 60
 
         # Buscar la tecla apretada del modulo de eventos de pygame
         for e in pygame.event.get():
@@ -89,6 +95,7 @@ def main():
                             producto, lista_productos, MARGEN)
                     else:
                         producto_candidato = ""
+                        
             # cargamos los sonidos
             #cargar_sonidos(e)
 
@@ -98,8 +105,10 @@ def main():
         screen.fill(COLOR_FONDO)
 
         # Dibujar de nuevo todo
+        areas_clic = []
         dibujar(screen, productos_en_pantalla, producto,
-                producto_candidato, puntos, segundos)
+                producto_candidato, puntos, segundos, areas_clic)
+        manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato)
 
         pygame.display.flip()
 
