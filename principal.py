@@ -33,6 +33,7 @@ def main():
     fps = FPS_inicial
 
     puntos = 0  # puntos o dinero acumulado por el jugador
+    carrito = [ ]
     producto_candidato = ""
 
     # Lee el archivo y devuelve una lista con los productos,
@@ -51,7 +52,7 @@ def main():
     areas_clic = []
     # dibuja la pantalla la primera vez
     dibujar(screen, productos_en_pantalla, producto,
-            producto_candidato, puntos, segundos, areas_clic)
+            producto_candidato, puntos, segundos, areas_clic, carrito)
    # manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato)
 
     # cargar_musica() #Prender musica de juego
@@ -86,7 +87,7 @@ def main():
                     # chequeamos si el prducto no es el producto principal. Si no lo es procesamos el producto
                     if indice < len(productos_en_pantalla):
                         puntos += procesar(producto,
-                                           productos_en_pantalla[indice], MARGEN)
+                                           productos_en_pantalla[indice], MARGEN, carrito)
                         producto_candidato = ""
                         # Elegir un producto
                         producto = dameProducto(lista_productos, MARGEN)
@@ -107,7 +108,7 @@ def main():
         # Dibujar de nuevo todo
         areas_clic = []
         dibujar(screen, productos_en_pantalla, producto,
-                producto_candidato, puntos, segundos, areas_clic)
+                producto_candidato, puntos, segundos, areas_clic, carrito)
         
         #Mouse############################################################
         mouse_x, mouse_y = pygame.mouse.get_pos()
@@ -120,13 +121,12 @@ def main():
                 for idx, area in enumerate(areas_clic):
                     if area.collidepoint(mouse_x, mouse_y):
                         if idx < len(productos_en_pantalla):
-                            puntos += procesar(producto, productos_en_pantalla[idx], MARGEN)
+                            puntos += procesar(producto, productos_en_pantalla[idx], MARGEN, carrito)
                             producto = dameProducto(lista_productos, MARGEN)
                             productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
                             
                             
         ########################################################################
-
         pygame.display.flip()
 
     while 1:

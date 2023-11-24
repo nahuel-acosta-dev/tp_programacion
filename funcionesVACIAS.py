@@ -127,9 +127,10 @@ def esUnPrecioValido(precio, lista_productos, margen):
 # el producto
 
 
-def procesar(producto_principal, producto_candidato, margen):
+def procesar(producto_principal, producto_candidato, margen, carrito):
     if producto_principal[2] - producto_candidato[2]< margen and producto_principal[2] - producto_candidato[2] >- margen:
         sonido_correcto()
+        carrito.append(producto_candidato[0])
         return producto_candidato[2]
     sonido_incorrecto()
     return 0

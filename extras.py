@@ -12,7 +12,7 @@ def dameLetraApretada(key):
         return ""
 
 
-def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidato, puntos, segundos, areas_clic):
+def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidato, puntos, segundos, areas_clic, carrito):
 
     defaultFont = pygame.font.Font(pygame.font.get_default_font(), 20)
     defaultFontGrande = pygame.font.Font(pygame.font.get_default_font(), 17)
@@ -24,6 +24,7 @@ def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidat
     
     ren1 = defaultFont.render(producto_candidato, 1, COLOR_TEXTO)
     ren2 = defaultFont.render("Puntos: " + str(puntos), 1, COLOR_TEXTO)
+    ren4 = defaultFont.render("Productos en carrito: " + str(len(carrito)), 1, COLOR_TEXTO)
     if (segundos < 15):
         ren3 = defaultFont.render(
             "Tiempo: " + str(int(segundos)), 1, COLOR_TIEMPO_FINAL)
@@ -91,8 +92,8 @@ def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidat
     
     screen.blit(ren1, (190, 570))
     screen.blit(ren2, (600, 10))
+    screen.blit(ren4, (540, 30))
     screen.blit(ren3, (10, 10))
-
     pygame.display.flip()
     
     
