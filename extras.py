@@ -13,8 +13,6 @@ def dameLetraApretada(key):
 
 
 def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidato, puntos, segundos, areas_clic):
-    print(productos_en_pantalla)
-    print(producto_principal)
 
     defaultFont = pygame.font.Font(pygame.font.get_default_font(), 20)
     defaultFontGrande = pygame.font.Font(pygame.font.get_default_font(), 17)
