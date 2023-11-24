@@ -131,6 +131,7 @@ def main():
 
     while 1:
         # Esperar el QUIT del usuario
+        
         for e in pygame.event.get():
             if e.type == QUIT:
                 pygame.quit()

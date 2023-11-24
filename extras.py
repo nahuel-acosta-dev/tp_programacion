@@ -31,6 +31,8 @@ def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidat
         ren3 = defaultFont.render(
             "Tiempo: " + str(int(segundos)), 1, COLOR_TEXTO)
         
+    
+        
    # Dibujar los nombres de los productos 
     x_pos = 115
     y_pos = ALTO - (ALTO-285)
@@ -43,8 +45,12 @@ def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidat
     columna_actual = 0
 
     # Dibujar la pregunta y el producto
-    screen.blit(defaultFontPregunta.render("Producto con precio similar a:", 1, COLOR_LETRAS), (200, 110))
-    screen.blit(defaultFontPregunta.render(producto_principal[0], 1, COLOR_LETRAS), (220, 150))
+    if segundos < 1:
+        screen.blit(defaultFontPregunta.render("Has obtenido: ", 1, COLOR_LETRAS), (200, 110))
+        screen.blit(defaultFontPregunta.render(str(puntos) + " Puntos", 1, COLOR_LETRAS), (220, 150))
+    else:
+        screen.blit(defaultFontPregunta.render("Producto con precio similar a:", 1, COLOR_LETRAS), (200, 110))
+        screen.blit(defaultFontPregunta.render(producto_principal[0], 1, COLOR_LETRAS), (220, 150))
 
     # Dibujar los nombres de los productos en tres filas verticales
     for producto in productos_en_pantalla:
@@ -84,6 +90,9 @@ def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidat
     screen.blit(ren3, (10, 10))
 
     pygame.display.flip()
+    
+    
+    
 
 def cargar_musica():
     pygame.mixer.music.set_volume(0.5)
