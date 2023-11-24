@@ -13,6 +13,8 @@ def dameLetraApretada(key):
 
 
 def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidato, puntos, segundos, areas_clic):
+    print(productos_en_pantalla)
+    print(producto_principal)
 
     defaultFont = pygame.font.Font(pygame.font.get_default_font(), 20)
     defaultFontGrande = pygame.font.Font(pygame.font.get_default_font(), 17)
@@ -76,8 +78,12 @@ def dibujar(screen, productos_en_pantalla, producto_principal, producto_candidat
                         1, COLOR_TIEMPO_FINAL), (x_pos + columna_actual * espacio_horizontal, y_pos + fila_actual * espacio_vertical))
             
         else:
-            screen.blit(defaultFontGrande.render(
+            if abs(producto_principal[2] - producto[2]) <= MARGEN:
+                screen.blit(defaultFontGrande.render(
                 nombre_en_pantalla, 1, COLOR_LETRAS), (x_pos + columna_actual * espacio_horizontal, y_pos + fila_actual * espacio_vertical))
+            else:
+                screen.blit(defaultFontGrande.render(
+                    nombre_en_pantalla, 1, COLOR_LETRAS_CORRECTAS), (x_pos + columna_actual * espacio_horizontal, y_pos + fila_actual * espacio_vertical))
         
         areas_clic.append(text_rect)
         columna_actual += 1
