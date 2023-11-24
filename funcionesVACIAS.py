@@ -12,6 +12,7 @@ from extras import *
 ### FUNCION PROCESAR() ###
 ### FUNCION DAME_PRODUCTO() ###
 ### FUNCION DAMEPRODUCTOSAleatorios() ###
+### FUNCION esUnPrecioValido() ###
 #-------------------------------------------------------------------------#
 ################################################################
 
