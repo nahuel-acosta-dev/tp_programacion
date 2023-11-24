@@ -113,7 +113,13 @@ def dameProducto(lista_productos, margen):
 
 # Devuelve True si existe el precio recibido como parametro aparece al menos 3 veces. Debe considerar el Margen.
 def esUnPrecioValido(precio, lista_productos, margen):
-    return True
+    contador = 0
+    for p in lista_productos:
+        if abs(precio - p[1]) <= margen or abs(precio - p[2]) <= margen:
+            contador += 1
+    if contador >=3:
+        return True
+    return False
 
 # Busca el precio del producto_principal y el precio del producto_candidato, si son iguales o dentro
 # del margen, entonces es valido y suma a la canasta el valor del producto. No suma si eligió directamente
