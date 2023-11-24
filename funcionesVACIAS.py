@@ -171,18 +171,19 @@ def dameProductosAleatorios(producto, lista_productos, margen):
 
 
 
-def manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato):
+# def manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato):
     
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:  # Verifica si se hizo clic con el botón izquierdo del mouse
-                mouse_x, mouse_y = pygame.mouse.get_pos()
-                for idx, area in enumerate(areas_clic):
-                    if area.collidepoint(mouse_x, mouse_y):
-                        #print(f"Clickeaste el producto {idx}")
+#     mouse_x, mouse_y = pygame.mouse.get_pos()
 
-                        if idx < len(productos_en_pantalla):
-                            puntos += procesar(producto, productos_en_pantalla[idx], MARGEN)
-                            producto = dameProducto(lista_productos, MARGEN)
-                            productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
+#     # Obtener solo los eventos del mouse
+#     mouse_events = [event for event in pygame.event.get() if event.type == pygame.MOUSEBUTTONDOWN]
+
+#     for event in mouse_events:
+#         if event.button == 1:  # Verifica si se hizo clic con el botón izquierdo del mouse
+#             for idx, area in enumerate(areas_clic):
+#                 if area.collidepoint(mouse_x, mouse_y):
+#                     if idx < len(productos_en_pantalla):
+#                         puntos += procesar(producto, productos_en_pantalla[idx], MARGEN)
+#                         producto = dameProducto(lista_productos, MARGEN)
+#                         productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
                             

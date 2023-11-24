@@ -52,7 +52,7 @@ def main():
     # dibuja la pantalla la primera vez
     dibujar(screen, productos_en_pantalla, producto,
             producto_candidato, puntos, segundos, areas_clic)
-    manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato)
+   # manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato)
 
     # cargar_musica() #Prender musica de juego
 
@@ -67,7 +67,7 @@ def main():
 
         # Buscar la tecla apretada del modulo de eventos de pygame
         for e in pygame.event.get():
-
+    
             # QUIT es apretar la X en la ventana
             if e.type == QUIT:
                 pygame.quit()
@@ -108,7 +108,24 @@ def main():
         areas_clic = []
         dibujar(screen, productos_en_pantalla, producto,
                 producto_candidato, puntos, segundos, areas_clic)
-        manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato)
+        
+        #Mouse############################################################
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+
+        
+        mouse_events = [event for event in pygame.event.get() if event.type == pygame.MOUSEBUTTONDOWN]
+
+        for event in mouse_events:
+            if event.button == 1: 
+                for idx, area in enumerate(areas_clic):
+                    if area.collidepoint(mouse_x, mouse_y):
+                        if idx < len(productos_en_pantalla):
+                            puntos += procesar(producto, productos_en_pantalla[idx], MARGEN)
+                            producto = dameProducto(lista_productos, MARGEN)
+                            productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
+                            
+                            
+        ########################################################################
 
         pygame.display.flip()
 
