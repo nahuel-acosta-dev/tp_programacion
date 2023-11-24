@@ -118,6 +118,8 @@ def main():
             if e.type == QUIT:
                 pygame.quit()
                 return
+            
+
 
 
 # Programa Principal ejecuta Main

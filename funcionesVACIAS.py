@@ -7,7 +7,7 @@ from extras import *
 
 ################################################################
 #-------------------FUNCIONES TERMINADAS-----------------------------------#
-#### FUNCION LECTURA() ###
+### FUNCION LECTURA() ###
 ### FUNCION BUSCAR_PRODUCTO() ###
 ### FUNCION PROCESAR() ###
 ### FUNCION DAME_PRODUCTO() ###
@@ -45,7 +45,7 @@ def lectura():
 # De la lista de productos elige uno al azar y devuelve una lista de 3 elementos, el primero el nombre del producto , el segundo si es economico
 # o premium y el tercero el precio.
 def buscar_producto(lista_productos, excluidos):
-    
+    lista_productos = lista_productos.copy()
     nombres_excluidos = [excluido[0] for excluido in excluidos]
     productos_disponibles = [producto for producto in lista_productos if producto[0] not in nombres_excluidos]
 
@@ -77,6 +77,7 @@ def dameProducto(lista_productos, margen):
     max_intentos = len(lista_productos)
     intentos = 0
     producto_probados = []
+    lista_productos = lista_productos.copy()
     
     while intentos < max_intentos:
         producto_aleatorio = buscar_producto(lista_productos, producto_probados)
@@ -84,7 +85,6 @@ def dameProducto(lista_productos, margen):
         
         
         for producto in lista_productos:
-            
             if producto[0] != producto_aleatorio[0]:
                 if producto_aleatorio[2] >= producto[1]:
                     diferencia_1 = producto_aleatorio[2] - producto[1]
@@ -128,20 +128,50 @@ def procesar(producto_principal, producto_candidato, margen):
 
 # Elegimos productos aleatorios, garantizando que al menos 2 tengan el mismo precio.
 # De manera aleatoria se debera tomar el valor economico o el valor premium. Agregar al nombre '(economico)' o '(premium)'
-# para que sea mostrado en pantalla.
-
+#para que sea mostrado en pantalla.
 
 def dameProductosAleatorios(producto, lista_productos, margen):
-    productos_seleccionados = [["Monitor de computadora", "(premium)", 2870],
-                               ["Silla de oficina", "(economico)", 3174],
-                               ["Lavadora", "(premium)", 4197],
-                               ["Refrigerador", "(premium)", 4533],
-                               ["Laptop", "(economico)", 4650],
-                               ["Cafetera", "(economico)", 2358]]
-    return productos_seleccionados
+    productos_seleccionados = []
+    productos_con_precio_dentro_del_margen = []
+    lista_productos = lista_productos.copy()
+    
+    # Filtrar productos con precio dentro del margen
+    for p in lista_productos:
+        if abs(producto[2] - p[1]) <= margen and abs(producto[2] - p[2]) <= margen:
+            if p[0] != producto[0]:
+                productos_con_precio_dentro_del_margen.append(p)
+
+    # Seleccionar al menos 2 productos con precio dentro del margen
+    productos_seleccionados.extend(random.sample(productos_con_precio_dentro_del_margen, min(2, len(productos_con_precio_dentro_del_margen))))
+
+    #Completar la selección con productos aleatorios (total de 6 productos)
+    #productos_seleccionados.extend(random.sample(lista_productos, max(0, 6 - len(productos_seleccionados))))
+    while len(productos_seleccionados) < 6:
+        producto_seleccionado = random.choice(lista_productos)
+        if producto_seleccionado[0] != producto[0] and producto_seleccionado not in productos_seleccionados:
+            productos_seleccionados.append(producto_seleccionado)
+
+    productos_seleccionados_modificados = []
+    for product in productos_seleccionados:
+        etiqueta = random.randint(1, 2)
+        if etiqueta == 1:
+            new_price = product[1]
+            new_label = "(economico)"
+        else:
+            new_price = product[2]
+            new_label = "(premium)"
+            
+        modified_product = [product[0], new_label, new_price]
+        productos_seleccionados_modificados.append(modified_product)
+
+    return productos_seleccionados_modificados
+    
+
+
 
 
 def manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, producto, producto_candidato):
+    
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:  # Verifica si se hizo clic con el botón izquierdo del mouse
@@ -155,4 +185,3 @@ def manejar_eventos(areas_clic, lista_productos, productos_en_pantalla, puntos, 
                             producto = dameProducto(lista_productos, MARGEN)
                             productos_en_pantalla = dameProductosAleatorios(producto, lista_productos, MARGEN)
                             
-    #                         # Aquí puedes agregar la lógica que desees para el producto clickeado
