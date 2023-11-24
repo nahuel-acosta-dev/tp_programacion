@@ -11,6 +11,7 @@ from extras import *
 ### FUNCION BUSCAR_PRODUCTO() ###
 ### FUNCION PROCESAR() ###
 ### FUNCION DAME_PRODUCTO() ###
+### FUNCION DAMEPRODUCTOSAleatorios() ###
 #-------------------------------------------------------------------------#
 ################################################################
 
